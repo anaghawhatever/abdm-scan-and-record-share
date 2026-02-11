@@ -263,9 +263,6 @@ const IntegratorPage = () => {
               <ExternalLink className="w-4 h-4" /> Developer Portal
             </a>
           </div>
-          <p className="text-xs text-muted-foreground mt-4">
-            Current integrators: ABHA PHR, Ekacare, Aarogya One, E Clinical PHR, CDAC, NIC
-          </p>
         </div>
       </section>
     </Layout>
