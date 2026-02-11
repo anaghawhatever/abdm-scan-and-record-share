@@ -6,58 +6,58 @@
 
 @layer base {
   :root {
-    /* ABDM Government Design System */
-    --background: 210 20% 98%;
-    --foreground: 210 30% 12%;
+    /* ABDM Government Design System — matched to abdm.gov.in */
+    --background: 0 0% 100%;
+    --foreground: 220 20% 18%;
 
     --card: 0 0% 100%;
-    --card-foreground: 210 30% 12%;
+    --card-foreground: 220 20% 18%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 210 30% 12%;
+    --popover-foreground: 220 20% 18%;
 
-    /* ABDM Primary Blue */
-    --primary: 205 100% 34%;
+    /* ABDM Primary — Deep Indigo Blue from the nav bar */
+    --primary: 228 52% 32%;
     --primary-foreground: 0 0% 100%;
 
     /* Trust Green */
     --secondary: 152 45% 42%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 210 18% 93%;
-    --muted-foreground: 210 12% 45%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 10% 46%;
 
-    /* Accent - Warm Amber for CTAs */
-    --accent: 36 95% 52%;
+    /* Accent — ABDM Saffron/Orange */
+    --accent: 24 85% 48%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 210 20% 88%;
-    --input: 210 20% 88%;
-    --ring: 205 100% 34%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 228 52% 32%;
 
     --radius: 0.5rem;
 
     /* ABDM Extended Palette */
-    --abdm-blue-dark: 210 80% 22%;
-    --abdm-blue: 205 100% 34%;
-    --abdm-blue-light: 205 80% 92%;
+    --abdm-navy: 228 52% 32%;
+    --abdm-blue: 214 80% 42%;
+    --abdm-blue-light: 214 60% 95%;
     --abdm-green: 152 45% 42%;
-    --abdm-green-light: 152 40% 93%;
-    --abdm-orange: 36 95% 52%;
-    --abdm-orange-light: 36 80% 93%;
+    --abdm-green-light: 152 40% 95%;
+    --abdm-orange: 24 85% 48%;
+    --abdm-orange-light: 24 60% 95%;
     --abdm-saffron: 24 90% 50%;
-    --abdm-navy: 220 50% 15%;
+    --abdm-gray: 220 14% 96%;
 
     /* Tier Colors */
-    --tier-citizen: 205 100% 34%;
-    --tier-citizen-light: 205 80% 94%;
+    --tier-citizen: 214 80% 42%;
+    --tier-citizen-light: 214 60% 96%;
     --tier-integrator: 152 45% 42%;
-    --tier-integrator-light: 152 40% 94%;
-    --tier-policy: 260 45% 45%;
-    --tier-policy-light: 260 40% 95%;
+    --tier-integrator-light: 152 40% 96%;
+    --tier-policy: 228 52% 32%;
+    --tier-policy-light: 228 40% 96%;
 
     /* Sidebar */
     --sidebar-background: 0 0% 98%;
@@ -87,15 +87,15 @@
 
 @layer components {
   .abdm-gradient {
-    background: linear-gradient(135deg, hsl(var(--abdm-navy)) 0%, hsl(var(--abdm-blue)) 50%, hsl(var(--abdm-green)) 100%);
+    background: hsl(var(--abdm-navy));
   }
 
   .abdm-gradient-subtle {
-    background: linear-gradient(135deg, hsl(var(--abdm-blue-light)) 0%, hsl(var(--abdm-green-light)) 100%);
+    background: hsl(var(--muted));
   }
 
   .hero-gradient {
-    background: linear-gradient(160deg, hsl(var(--abdm-navy)) 0%, hsl(var(--abdm-blue)) 40%, hsl(var(--abdm-green) / 0.8) 100%);
+    background: linear-gradient(160deg, hsl(var(--abdm-navy)) 0%, hsl(var(--abdm-blue)) 100%);
   }
 
   .tier-card-citizen {
@@ -117,18 +117,17 @@
   }
 
   .section-divider {
-    @apply w-16 h-1 rounded-full;
+    @apply w-12 h-0.5 rounded-full;
     background: hsl(var(--abdm-blue));
   }
 
   .stat-card {
-    @apply rounded-xl p-6 text-center;
-    background: hsl(var(--card));
-    box-shadow: 0 2px 12px hsl(var(--abdm-blue) / 0.08);
+    @apply rounded-lg p-6 text-center bg-card;
+    box-shadow: 0 1px 4px hsl(var(--foreground) / 0.06);
   }
 
   .gov-badge {
-    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium tracking-wide uppercase;
+    @apply inline-flex items-center px-3 py-1 rounded text-xs font-medium tracking-wide uppercase;
     background: hsl(var(--abdm-blue-light));
     color: hsl(var(--abdm-blue));
   }
