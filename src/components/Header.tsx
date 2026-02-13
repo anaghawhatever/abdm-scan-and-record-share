@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Phone } from "lucide-react";
+import nhaLogo from "@/assets/nha-logo.jpg";
+import abdmLogo from "@/assets/abdm-logo.svg";
+import abdmLogoText from "@/assets/abdm-logo-text.svg";
 
 const navItems = [
   { label: "Home", path: "/" },
@@ -8,6 +11,7 @@ const navItems = [
   { label: "For Solution Companies", path: "/integrators" },
   { label: "For States & UTs", path: "/policy" },
   { label: "Resources", path: "/resources" },
+  { label: "A Recommendation", path: "/recommendation" },
 ];
 
 const Header = () => {
@@ -39,22 +43,14 @@ const Header = () => {
 
       {/* Logo Bar */}
       <div className="bg-card border-b border-border py-3">
-        <div className="container flex items-center gap-6">
-          {/* NHA Emblem */}
+        <div className="container flex items-center gap-4">
+          {/* NHA Logo */}
+          <img src={nhaLogo} alt="National Health Authority" className="h-12 w-auto shrink-0" />
+          <div className="h-10 w-px bg-border" />
+          {/* ABDM Logo */}
           <div className="flex items-center gap-2 shrink-0">
-            <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center">
-              <span className="text-primary-foreground font-heading font-bold text-sm">NHA</span>
-            </div>
-          </div>
-          <div className="h-8 w-px bg-border" />
-          {/* ABDM Branding */}
-          <div className="shrink-0">
-            <div className="font-heading font-bold text-base text-primary leading-tight">
-              Ayushman Bharat Digital Mission
-            </div>
-            <div className="text-xs text-accent font-semibold">
-              Building Digital Health Ecosystem
-            </div>
+            <img src={abdmLogo} alt="ABDM" className="h-10 w-auto" />
+            <img src={abdmLogoText} alt="Ayushman Bharat Digital Mission" className="h-8 w-auto hidden sm:block" />
           </div>
           <div className="flex-1" />
           {/* Scan & Record Share badge */}
@@ -62,6 +58,14 @@ const Header = () => {
             <div className="text-xs text-muted-foreground">Initiative</div>
             <div className="font-heading font-bold text-sm text-foreground">Scan & Record Share</div>
           </div>
+          {/* Mobile Hamburger — right side */}
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="lg:hidden p-2 text-foreground"
+            aria-label="Toggle menu"
+          >
+            {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
         </div>
       </div>
 
@@ -84,31 +88,22 @@ const Header = () => {
               </Link>
             ))}
           </nav>
-
-          {/* Mobile Toggle */}
-          <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className="lg:hidden p-2 rounded text-primary-foreground"
-            aria-label="Toggle menu"
-          >
-            {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
         </div>
 
-        {/* Mobile Nav */}
+        {/* Mobile Nav — full-width slide-down like ABDM website */}
         {mobileOpen && (
-          <nav className="lg:hidden border-t border-primary-foreground/20 bg-primary pb-3">
-            <div className="container flex flex-col gap-0.5 pt-1">
-              {navItems.map((item) => (
+          <nav className="lg:hidden bg-primary border-t border-accent">
+            <div className="flex flex-col">
+              {navItems.map((item, i) => (
                 <Link
                   key={item.path}
                   to={item.path}
                   onClick={() => setMobileOpen(false)}
-                  className={`px-4 py-2.5 rounded text-sm font-medium transition-colors ${
+                  className={`px-6 py-3.5 text-sm font-semibold transition-colors border-b border-primary-foreground/10 ${
                     location.pathname === item.path
-                      ? "bg-card text-primary"
-                      : "text-primary-foreground/90 hover:bg-primary-foreground/10"
-                  }`}
+                      ? "text-accent bg-primary-foreground/5"
+                      : "text-primary-foreground hover:bg-primary-foreground/5"
+                  } ${i === 0 && location.pathname === item.path ? "border-t-2 border-t-accent" : ""}`}
                 >
                   {item.label}
                 </Link>

@@ -2,7 +2,8 @@ import Layout from "@/components/Layout";
 import SectionHeader from "@/components/SectionHeader";
 import {
   Code2, Server, Shield, FileCode, Terminal, CheckCircle,
-  ExternalLink, Database, Lock, Workflow, AlertTriangle, BookOpen
+  ExternalLink, Database, Lock, Workflow, AlertTriangle, BookOpen,
+  ArrowDown, ArrowRight, QrCode, Smartphone, Share2, Monitor
 } from "lucide-react";
 import {
   Accordion,
@@ -26,7 +27,7 @@ const techFaqs = [
   },
   {
     q: "How does consent work in this flow?",
-    a: "Since the record sharing is patient-initiated, consent is implicit. The patient scans the QR code and selects records, implying consent. PHR apps can add explicit consent confirmation flows."
+    a: "Since the record sharing is patient-initiated, consent is implicit. The patient scans the QR code and selects records, implying consent. The patient also sets a consent duration of up to 6 hours, which can be updated before expiry."
   },
   {
     q: "How is data encrypted during transfer?",
@@ -34,8 +35,17 @@ const techFaqs = [
   },
   {
     q: "What is the consent expiry duration?",
-    a: "The patient sets the consent expiry, with a maximum of 6 hours. After expiry, the URL containing the records becomes inaccessible."
+    a: "The patient sets the consent expiry, up to a maximum of 6 hours. The patient can also update the duration before it expires. After expiry, the URL containing the records becomes inaccessible."
   },
+];
+
+const userFlowSteps = [
+  { icon: QrCode, title: "QR Code at Facility", desc: "QR code placed at the counter contains recipient information." },
+  { icon: Smartphone, title: "Patient Scans QR", desc: "PHR app scans QR, receives recipient info and cert URL (public encryption key)." },
+  { icon: FileCode, title: "Patient Selects Records", desc: "Patient selects records to share. PHR encrypts in FHIR format using the public key." },
+  { icon: Share2, title: "PHR Sends to HIE-CM", desc: "PHR bundles patient info, recipient info, and encrypted records, sends via /share API." },
+  { icon: Server, title: "HIE-CM Routes to HIU", desc: "HIE-CM identifies recipient, forwards encrypted payload. HIE-CM cannot read or store data." },
+  { icon: Monitor, title: "HIU Decrypts & Displays", desc: "HIU decrypts data using its private key, displays records. Access lost once window is closed." },
 ];
 
 const IntegratorPage = () => {
@@ -62,32 +72,58 @@ const IntegratorPage = () => {
         </div>
       </section>
 
-      {/* Technical Flow */}
+      {/* User Flow Diagram */}
       <section className="py-12 bg-card">
         <div className="container">
-          <SectionHeader title="How It Works — Technical Flow" />
+          <SectionHeader title="User Flow — Technical Overview" subtitle="The end-to-end flow of Scan & Record Share from QR scan to record display." />
+          <div className="max-w-5xl mx-auto mt-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+              {userFlowSteps.map((step, i) => (
+                <div key={i} className="relative p-4 rounded-lg bg-muted border border-border">
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="w-6 h-6 rounded-full bg-primary flex items-center justify-center">
+                      <span className="text-primary-foreground font-bold text-[10px]">{i + 1}</span>
+                    </div>
+                    <step.icon className="w-4 h-4 text-tier-integrator" />
+                  </div>
+                  <h4 className="font-heading font-semibold text-xs mb-1">{step.title}</h4>
+                  <p className="text-[11px] text-muted-foreground leading-relaxed">{step.desc}</p>
+                </div>
+              ))}
+            </div>
+            <p className="text-xs text-muted-foreground text-center mt-4">
+              The HIE-CM only logs transaction metadata (who sent to whom, with timestamp). It never reads, views, or stores health record data.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Architecture Overview */}
+      <section className="py-12 bg-muted">
+        <div className="container">
+          <SectionHeader title="Architecture Overview" />
           <div className="max-w-4xl mx-auto mt-6">
-            <div className="bg-muted rounded-lg border border-border p-6">
+            <div className="bg-card rounded-lg border border-border p-6">
               <div className="grid md:grid-cols-2 gap-8">
                 <div>
-                  <h3 className="font-heading font-bold text-base mb-3">Architecture Overview</h3>
+                  <h3 className="font-heading font-bold text-base mb-3">How Data Flows</h3>
                   <ol className="space-y-2.5 text-sm text-muted-foreground">
-                    <li className="flex gap-2"><span className="text-primary font-bold shrink-0">1.</span> QR code at facility contains Receiver ID and encryption public key</li>
-                    <li className="flex gap-2"><span className="text-primary font-bold shrink-0">2.</span> Patient scans QR via ABDM-enabled PHR app, selects records and consent duration</li>
-                    <li className="flex gap-2"><span className="text-primary font-bold shrink-0">3.</span> PHR app creates FHIR bundle with records, sends to HIE-CM</li>
-                    <li className="flex gap-2"><span className="text-primary font-bold shrink-0">4.</span> HIE-CM generates consent artefacts and notifies HIU</li>
-                    <li className="flex gap-2"><span className="text-primary font-bold shrink-0">5.</span> HIU receives encrypted data and decrypts it</li>
-                    <li className="flex gap-2"><span className="text-primary font-bold shrink-0">6.</span> Doctor views records. Access expires on consent expiry</li>
+                    <li className="flex gap-2"><span className="text-primary font-bold shrink-0">1.</span> QR code at the facility counter contains recipient information and a cert URL (public encryption key).</li>
+                    <li className="flex gap-2"><span className="text-primary font-bold shrink-0">2.</span> Patient's PHR app scans the QR, selects records, and encrypts them in FHIR format using the public key.</li>
+                    <li className="flex gap-2"><span className="text-primary font-bold shrink-0">3.</span> The PHR bundles patient info (x-auth token), recipient details, and encrypted records — then sends this to the HIE-CM via the /share API.</li>
+                    <li className="flex gap-2"><span className="text-primary font-bold shrink-0">4.</span> HIE-CM identifies the recipient and forwards the encrypted payload to the destination system (HIU). HIE-CM is data-blind — it cannot read, view, or store any records.</li>
+                    <li className="flex gap-2"><span className="text-primary font-bold shrink-0">5.</span> The HIU decrypts the data using its private key and the FHIR bundle, displaying records in a separate window.</li>
+                    <li className="flex gap-2"><span className="text-primary font-bold shrink-0">6.</span> Once the recipient closes the window, access to the shared records is lost. HIE-CM only logs transaction metadata.</li>
                   </ol>
                 </div>
                 <div>
                   <h3 className="font-heading font-bold text-base mb-3">Key Components</h3>
                   <div className="space-y-3">
                     {[
-                      { icon: Server, label: "HIE-CM (Gateway)", desc: "Data-blind consent manager routing requests" },
-                      { icon: Database, label: "HIP / PHR Locker", desc: "Source of patient health records" },
-                      { icon: Workflow, label: "HIU (HMIS/LMIS)", desc: "Recipient system displaying records" },
-                      { icon: Lock, label: "Encryption Layer", desc: "Public-private key based encryption" },
+                      { icon: Server, label: "HIE-CM (Gateway)", desc: "Data-blind consent manager — routes requests, logs metadata only" },
+                      { icon: Database, label: "HIP / PHR Locker", desc: "Source of patient health records (PHR application)" },
+                      { icon: Workflow, label: "HIU (HMIS/LMIS)", desc: "Recipient system — decrypts and displays shared records" },
+                      { icon: Lock, label: "Encryption Layer", desc: "Public-private key encryption via QR cert URL" },
                     ].map((c) => (
                       <div key={c.label} className="flex gap-3 items-start">
                         <c.icon className="w-4 h-4 text-secondary shrink-0 mt-0.5" />
@@ -106,11 +142,11 @@ const IntegratorPage = () => {
       </section>
 
       {/* Integration Checklist */}
-      <section className="py-12 bg-muted">
+      <section className="py-12 bg-card">
         <div className="container">
           <SectionHeader title="Integration Checklist" />
           <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-5 mt-6">
-            <div className="p-5 rounded-lg bg-card border border-border">
+            <div className="p-5 rounded-lg bg-muted border border-border">
               <h3 className="font-heading font-bold text-base mb-3 flex items-center gap-2">
                 <Code2 className="w-4 h-4 text-primary" /> For PHR Applications (HIP)
               </h3>
@@ -127,7 +163,7 @@ const IntegratorPage = () => {
                 ))}
               </ul>
             </div>
-            <div className="p-5 rounded-lg bg-card border border-border">
+            <div className="p-5 rounded-lg bg-muted border border-border">
               <h3 className="font-heading font-bold text-base mb-3 flex items-center gap-2">
                 <Server className="w-4 h-4 text-primary" /> For HMIS/LMIS Solutions (HIU)
               </h3>
@@ -149,7 +185,7 @@ const IntegratorPage = () => {
       </section>
 
       {/* API Reference — White-labelled */}
-      <section className="py-12 bg-card">
+      <section className="py-12 bg-muted">
         <div className="container">
           <SectionHeader title="API Reference Overview" subtitle="Key API categories for the Scan & Record Share integration." />
           <div className="max-w-3xl mx-auto mt-6 space-y-3">
@@ -160,7 +196,7 @@ const IntegratorPage = () => {
               { category: "Record Share Notifications", desc: "Notification APIs to inform relevant parties about record share events and status changes." },
               { category: "Record Share Details", desc: "APIs to retrieve details of past record share transactions for audit and display." },
             ].map((api, i) => (
-              <div key={i} className="p-4 rounded-lg bg-muted border border-border flex items-start gap-3">
+              <div key={i} className="p-4 rounded-lg bg-card border border-border flex items-start gap-3">
                 <div className="w-6 h-6 rounded bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
                   <span className="text-xs font-bold text-primary">{i + 1}</span>
                 </div>
@@ -178,7 +214,7 @@ const IntegratorPage = () => {
       </section>
 
       {/* Certification Pathway */}
-      <section className="py-12 bg-muted">
+      <section className="py-12 bg-card">
         <div className="container">
           <SectionHeader title="Certification Pathway" />
           <div className="max-w-3xl mx-auto mt-6 flex flex-col gap-3">
@@ -189,7 +225,7 @@ const IntegratorPage = () => {
               { step: "4", title: "Submit for Compliance Review", desc: "Request NHA compliance verification for your integration." },
               { step: "5", title: "Go Live", desc: "Upon certification, deploy to the production environment." },
             ].map((s) => (
-              <div key={s.step} className="flex gap-3 items-start p-4 rounded-lg bg-card border border-border">
+              <div key={s.step} className="flex gap-3 items-start p-4 rounded-lg bg-muted border border-border">
                 <div className="w-8 h-8 shrink-0 rounded-full bg-tier-integrator flex items-center justify-center">
                   <span className="text-primary-foreground font-heading font-bold text-sm">{s.step}</span>
                 </div>
@@ -204,16 +240,16 @@ const IntegratorPage = () => {
       </section>
 
       {/* Compliance */}
-      <section className="py-12 bg-card">
+      <section className="py-12 bg-muted">
         <div className="container">
           <SectionHeader title="Compliance Requirements" />
           <div className="max-w-4xl mx-auto grid md:grid-cols-3 gap-5 mt-6">
             {[
-              { icon: Shield, title: "Data Privacy", items: ["Patient consent for every share", "No permanent storage by provider", "Time-bound access only", "Purpose limitation"] },
+              { icon: Shield, title: "Data Privacy", items: ["Patient consent for every share", "No permanent storage by provider", "Time-bound access (up to 6 hours)", "Purpose limitation"] },
               { icon: FileCode, title: "Technical Standards", items: ["FHIR-compliant data bundles", "Encrypted data transfer", "ABHA-linked records", "Supported formats: PDF, JPG, PNG"] },
               { icon: AlertTriangle, title: "Do's & Don'ts", items: ["Do: Minimal data sharing", "Do: Interoperability (FHIR)", "Don't: Consentless access", "Don't: Permanent storage"] },
             ].map((c) => (
-              <div key={c.title} className="p-5 rounded-lg bg-muted border border-border">
+              <div key={c.title} className="p-5 rounded-lg bg-card border border-border">
                 <c.icon className="w-6 h-6 text-primary mb-3" />
                 <h3 className="font-heading font-semibold text-sm mb-2">{c.title}</h3>
                 <ul className="space-y-1.5 text-xs text-muted-foreground">
@@ -228,13 +264,13 @@ const IntegratorPage = () => {
       </section>
 
       {/* Tech FAQs */}
-      <section className="py-12 bg-muted">
+      <section className="py-12 bg-card">
         <div className="container">
           <SectionHeader title="Technical FAQs" />
           <div className="max-w-3xl mx-auto mt-6">
             <Accordion type="single" collapsible className="space-y-2">
               {techFaqs.map((f, i) => (
-                <AccordionItem key={i} value={`faq-${i}`} className="border border-border rounded-lg px-4 bg-card">
+                <AccordionItem key={i} value={`faq-${i}`} className="border border-border rounded-lg px-4 bg-muted">
                   <AccordionTrigger className="text-sm font-semibold text-left hover:no-underline">
                     {f.q}
                   </AccordionTrigger>
@@ -249,7 +285,7 @@ const IntegratorPage = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-12 bg-card border-t border-border">
+      <section className="py-12 bg-muted border-t border-border">
         <div className="container text-center">
           <h2 className="text-xl md:text-2xl font-heading font-bold">Ready to Integrate?</h2>
           <p className="text-muted-foreground text-sm mt-2 max-w-md mx-auto">

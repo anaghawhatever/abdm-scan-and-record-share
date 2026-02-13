@@ -3,15 +3,27 @@ import Layout from "@/components/Layout";
 import SectionHeader from "@/components/SectionHeader";
 import {
   QrCode, Shield, Clock, Users, Heart, Building2, Code2,
-  Landmark, ArrowRight, FileText, Activity, Smartphone,
-  Globe, Play
+  Landmark, ArrowRight, FileText, Smartphone, Play
 } from "lucide-react";
+import flowQr from "@/assets/flow-qr-facility.jpg";
+import flowScan from "@/assets/flow-patient-scan.jpg";
+import flowSelect from "@/assets/flow-select-records.jpg";
+import flowShare from "@/assets/flow-share-confirm.jpg";
+import flowDoctor from "@/assets/flow-doctor-view.jpg";
 
 const stats = [
-  { label: "ABHA IDs Created", value: "67 Cr+", icon: Users },
-  { label: "Health Records Linked", value: "42 Cr+", icon: FileText },
-  { label: "Verified Facilities", value: "3.2 L+", icon: Building2 },
-  { label: "Integrators Onboarded", value: "1,200+", icon: Code2 },
+  { label: "ABHA Numbers Created", value: "[XX] Cr+", icon: Users },
+  { label: "Health Records Linked", value: "[XX] Cr+", icon: FileText },
+  { label: "Verified Facilities", value: "[XX] L+", icon: Building2 },
+  { label: "Integrators Onboarded", value: "[X,XXX]+", icon: Code2 },
+];
+
+const flowSteps = [
+  { img: flowQr, caption: "QR Code at Facility", desc: "A QR code containing recipient information is placed at the clinic or hospital counter." },
+  { img: flowScan, caption: "Patient Scans QR Code", desc: "Patient uses a PHR app to scan the QR code, receiving recipient details and encryption key." },
+  { img: flowSelect, caption: "Select Records from Health Locker", desc: "Patient selects health records — lab reports, prescriptions, X-rays — from their PHR Health Locker." },
+  { img: flowShare, caption: "Confirm & Share", desc: "Patient sets consent duration (up to 6 hours) and taps Share. Records are encrypted and sent securely." },
+  { img: flowDoctor, caption: "Doctor Views Records", desc: "The doctor's HMIS receives the same records instantly, displayed on their screen for the consultation." },
 ];
 
 const Index = () => {
@@ -64,18 +76,18 @@ const Index = () => {
         </div>
       </section>
 
-      {/* What is Scan & Record Share */}
+      {/* About */}
       <section className="py-14 md:py-16 bg-card">
         <div className="container">
           <SectionHeader
             title="About Scan & Record Share"
-            subtitle="A simple, patient-controlled way to share health records digitally at the point of care."
+            subtitle="A simple, patient-controlled way to share health records digitally with a doctor or at a facility."
           />
           <div className="grid md:grid-cols-3 gap-6 mt-6">
             {[
               { icon: QrCode, title: "Scan", desc: "Scan the QR code displayed at the healthcare facility using any ABDM-enabled PHR app on your smartphone.", color: "text-primary" },
               { icon: FileText, title: "Select", desc: "Choose which health records to share — prescriptions, lab results, or medical documents from your phone.", color: "text-secondary" },
-              { icon: Shield, title: "Share", desc: "Confirm and share securely. Records are available to the doctor only for the duration you specify.", color: "text-accent" },
+              { icon: Shield, title: "Share", desc: "Confirm and share securely. Records are available to the doctor only for the duration you specify (up to 6 hours).", color: "text-accent" },
             ].map((item) => (
               <div key={item.title} className="text-center p-6 rounded-lg bg-muted">
                 <item.icon className={`w-8 h-8 ${item.color} mx-auto mb-3`} />
@@ -147,31 +159,33 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Ecosystem */}
+      {/* How It Fits Within ABDM — Visual Flow */}
       <section className="py-14 md:py-16 bg-muted">
         <div className="container">
           <SectionHeader
-            title="How It Fits Within ABDM"
-            subtitle="Scan & Record Share is part of the broader Ayushman Bharat Digital Mission health stack."
+            title="How It Works — Patient Journey"
+            subtitle="Scan & Record Share enables patients to digitally share health records with their doctor in five simple steps."
           />
-          <div className="max-w-4xl mx-auto mt-6 bg-card rounded-lg p-6 border border-border">
-            <div className="grid grid-cols-5 gap-3 items-center text-center">
-              {[
-                { label: "ABHA ID", desc: "Unique Health ID", icon: Users, highlight: false },
-                { label: "Health Locker", desc: "PHR Apps", icon: Smartphone, highlight: false },
-                { label: "Scan & Share", desc: "This Initiative", icon: QrCode, highlight: true },
-                { label: "HMIS / LMIS", desc: "Facility Software", icon: Activity, highlight: false },
-                { label: "HIE-CM", desc: "Consent Manager", icon: Globe, highlight: false },
-              ].map((item) => (
-                <div key={item.label} className={`p-3 rounded-lg ${item.highlight ? "bg-primary text-primary-foreground" : "bg-muted"}`}>
-                  <item.icon className={`w-5 h-5 mx-auto mb-1.5 ${item.highlight ? "" : "text-primary"}`} />
-                  <div className="font-heading font-bold text-xs">{item.label}</div>
-                  <div className={`text-[10px] mt-0.5 ${item.highlight ? "opacity-80" : "text-muted-foreground"}`}>{item.desc}</div>
+          <div className="max-w-5xl mx-auto mt-8">
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+              {flowSteps.map((step, i) => (
+                <div key={i} className="flex flex-col items-center text-center relative">
+                  <div className="w-full aspect-square rounded-lg overflow-hidden bg-card border border-border mb-3 shadow-sm">
+                    <img src={step.img} alt={step.caption} className="w-full h-full object-cover" />
+                  </div>
+                  <div className="w-7 h-7 rounded-full bg-primary flex items-center justify-center mb-2">
+                    <span className="text-primary-foreground font-heading font-bold text-xs">{i + 1}</span>
+                  </div>
+                  <h4 className="font-heading font-semibold text-xs mb-1">{step.caption}</h4>
+                  <p className="text-[11px] text-muted-foreground leading-relaxed">{step.desc}</p>
+                  {i < flowSteps.length - 1 && (
+                    <ArrowRight className="hidden md:block w-5 h-5 text-primary absolute -right-4 top-[40%]" />
+                  )}
                 </div>
               ))}
             </div>
-            <p className="text-center text-xs text-muted-foreground mt-4">
-              Data flows securely between components via the ABDM Gateway with patient consent.
+            <p className="text-center text-xs text-muted-foreground mt-6">
+              Data flows securely between components via the ABDM Gateway (HIE-CM). The gateway is data-blind — it cannot read or store any health records.
             </p>
           </div>
         </div>

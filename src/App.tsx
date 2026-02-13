@@ -8,6 +8,7 @@ import CitizenPage from "./pages/CitizenPage";
 import IntegratorPage from "./pages/IntegratorPage";
 import PolicyPage from "./pages/PolicyPage";
 import ResourcesPage from "./pages/ResourcesPage";
+import RecommendationPage from "./pages/RecommendationPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -24,6 +25,7 @@ const App = () => (
           <Route path="/integrators" element={<IntegratorPage />} />
           <Route path="/policy" element={<PolicyPage />} />
           <Route path="/resources" element={<ResourcesPage />} />
+          <Route path="/recommendation" element={<RecommendationPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
