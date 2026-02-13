@@ -28,7 +28,7 @@ const PolicyPage = () => {
           <div className="max-w-4xl mx-auto mt-6 grid md:grid-cols-2 gap-5">
             {[
               { icon: Scale, title: "Regulatory Foundation", desc: "Aligned with the Health Data Management Policy (HDMP) under ABDM, ensuring compliance with data protection norms and consent framework." },
-              { icon: Shield, title: "Data Governance", desc: "Built on principles of minimal data sharing, purpose limitation, time-bound access, and patient-first consent. The HIE-CM gateway is data-blind by design." },
+              { icon: Shield, title: "Data Governance", desc: "Built on principles of minimal data sharing, purpose limitation, time-bound access (up to 6 hours, updatable by the patient), and patient-first consent. The HIE-CM gateway is data-blind by design." },
             ].map((p) => (
               <div key={p.title} className="p-5 rounded-lg bg-muted border border-border">
                 <p.icon className="w-6 h-6 text-tier-policy mb-3" />
@@ -47,11 +47,11 @@ const PolicyPage = () => {
           <div className="max-w-4xl mx-auto grid md:grid-cols-3 gap-5 mt-6">
             {[
               { icon: TrendingUp, title: "Improved Care Quality", desc: "Doctors receive comprehensive patient history at the point of care, reducing misdiagnosis and redundant tests." },
-              { icon: Users, title: "Higher ABHA Utilization", desc: "Drives adoption of ABHA IDs and PHR apps as citizens see tangible value in their digital health identity." },
+              { icon: Users, title: "Higher ABHA Utilization", desc: "Drives adoption of ABHA and PHR apps as citizens see tangible value in their digital health identity." },
               { icon: Building2, title: "No New Infrastructure", desc: "Leverages existing ABDM ecosystem. States only need to ensure HMIS/LMIS compliance and facility QR deployment." },
               { icon: Award, title: "Citizen Trust", desc: "Patient-controlled sharing builds public trust in digital health systems — a critical success factor." },
               { icon: Target, title: "Policy Goal Alignment", desc: "Directly supports National Digital Health Blueprint goals of interoperable, consent-based health information exchange." },
-              { icon: Shield, title: "Data Security", desc: "Records are encrypted end-to-end and access expires automatically, ensuring patient data remains protected." },
+              { icon: Shield, title: "Data Security", desc: "Records are encrypted end-to-end and access expires automatically (up to 6 hours), ensuring patient data remains protected." },
             ].map((b) => (
               <div key={b.title} className="p-4 rounded-lg bg-card border border-border">
                 <b.icon className="w-5 h-5 text-tier-policy mb-2" />
@@ -96,7 +96,7 @@ const PolicyPage = () => {
         <div className="container text-center">
           <h2 className="text-xl md:text-2xl font-heading font-bold">Bring Scan & Record Share to Your State</h2>
           <p className="text-muted-foreground text-sm mt-2 max-w-md mx-auto">
-            Contact NHA to discuss implementation support, timelines, and state-specific rollout plans.
+            Contact NHA to discuss implementation support, timelines, and state-specific plans.
           </p>
           <div className="flex flex-wrap justify-center gap-3 mt-5">
             <a href="#" className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2.5 rounded font-semibold text-sm hover:brightness-110 transition-all">
