@@ -141,8 +141,102 @@ const IntegratorPage = () => {
         </div>
       </section>
 
-      {/* Integration Checklist */}
+      {/* How is this different from M3? */}
       <section className="py-12 bg-card">
+        <div className="container">
+          <SectionHeader
+            title="How Is Scan & Record Share Different from M3?"
+            subtitle="Understanding the key distinction: patient-initiated push vs. facility-initiated pull."
+          />
+          <div className="max-w-4xl mx-auto mt-6">
+            {/* Intro */}
+            <div className="bg-muted rounded-lg border border-border p-5 mb-6">
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                In the existing <strong>M3 (Health Information) flow</strong>, a healthcare provider (HIU) initiates a consent request to access a patient's records stored at a Health Information Provider (HIP). The patient approves consent via the HIE-CM, and the HIP then pushes encrypted records to the HIU. This requires both HIP and HIU to be <strong>M3 compliant</strong>, with full consent manager integration.
+              </p>
+              <p className="text-sm text-muted-foreground leading-relaxed mt-3">
+                <strong>Scan & Record Share</strong> fundamentally changes this — the <strong>patient initiates the sharing</strong> by scanning a QR code at the facility and selecting which records to push. Since the patient is in control, consent is implicit, and the integration requirements are significantly lighter.
+              </p>
+            </div>
+
+            {/* Comparison table */}
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm border border-border rounded-lg overflow-hidden">
+                <thead>
+                  <tr className="bg-primary text-primary-foreground">
+                    <th className="text-left p-3 font-heading font-semibold">Aspect</th>
+                    <th className="text-left p-3 font-heading font-semibold">M3 Flow (Health Information)</th>
+                    <th className="text-left p-3 font-heading font-semibold">Scan & Record Share</th>
+                  </tr>
+                </thead>
+                <tbody className="bg-card">
+                  {[
+                    {
+                      aspect: "Who initiates?",
+                      m3: "Facility / HIU initiates a consent request",
+                      srs: "Patient initiates by scanning a QR code"
+                    },
+                    {
+                      aspect: "Consent mechanism",
+                      m3: "Explicit consent via HIE-CM — patient approves remotely",
+                      srs: "Implicit consent — patient physically selects and shares records"
+                    },
+                    {
+                      aspect: "PHR / HIP requirement",
+                      m3: "HIP must be M3 compliant with full callback implementation",
+                      srs: "PHR app needs only M2 compliance + Record Share APIs"
+                    },
+                    {
+                      aspect: "HIU requirement",
+                      m3: "HIU must be M3 compliant with consent request flow",
+                      srs: "HIU only needs to implement Record Share receive endpoints — no M3 needed"
+                    },
+                    {
+                      aspect: "Data flow direction",
+                      m3: "Pull model — HIU requests, HIP responds after consent",
+                      srs: "Push model — Patient pushes records directly to recipient"
+                    },
+                    {
+                      aspect: "Integration complexity",
+                      m3: "Higher — requires consent flow, HIP callbacks, data transfer APIs",
+                      srs: "Lower — QR scan, encrypt, push via single /share API"
+                    },
+                    {
+                      aspect: "Consent duration",
+                      m3: "Defined by consent artefact (can be long-term)",
+                      srs: "Short-lived — up to 6 hours, set by the patient"
+                    },
+                    {
+                      aspect: "Data persistence",
+                      m3: "HIU may store data as per consent artefact terms",
+                      srs: "No persistence — records are view-only, lost when window is closed"
+                    },
+                  ].map((row, i) => (
+                    <tr key={i} className={i % 2 === 0 ? "bg-card" : "bg-muted/50"}>
+                      <td className="p-3 font-semibold text-foreground border-t border-border">{row.aspect}</td>
+                      <td className="p-3 text-muted-foreground border-t border-border">{row.m3}</td>
+                      <td className="p-3 text-muted-foreground border-t border-border">{row.srs}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Key takeaway */}
+            <div className="mt-6 p-4 rounded-lg bg-accent/10 border border-accent/30">
+              <h4 className="font-heading font-bold text-sm text-foreground mb-1.5 flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-secondary" /> Key Takeaway for Integrators
+              </h4>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                If your application is not yet M3 compliant, you can still enable patients to share records with your platform through <strong>Scan & Record Share</strong>. PHR apps need M2 compliance with the Record Share API collection, and HIU systems only need to implement the receive and decrypt endpoints — <strong>no M3 certification required</strong>. This makes it a significantly faster path to enabling health data exchange at the point of care.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Integration Checklist */}
+      <section className="py-12 bg-muted">
         <div className="container">
           <SectionHeader title="Integration Checklist" />
           <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-5 mt-6">
