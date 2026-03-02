@@ -2,7 +2,7 @@ import Layout from "@/components/Layout";
 import SectionHeader from "@/components/SectionHeader";
 import {
   Heart, Shield, Clock, FileText, Smartphone, QrCode,
-  CheckCircle, Phone, UserCheck, Lock, Eye, AlertCircle
+  CheckCircle, Phone, UserCheck, Lock, Eye, AlertCircle, History
 } from "lucide-react";
 import {
   Accordion,
@@ -16,10 +16,11 @@ import benefitEmergency from "@/assets/benefit-emergency.jpg";
 
 const steps = [
   { step: "1", title: "Get Your ABHA", desc: "Create your Ayushman Bharat Health Account (ABHA) if you don't have one. It's free and takes only a few minutes.", icon: UserCheck },
-  { step: "2", title: "Download a PHR App", desc: "Download an ABDM-enabled PHR application like ABHA App, Ekacare, or Aarogya One on your smartphone.", icon: Smartphone },
+  { step: "2", title: "Download a PHR App", desc: "Download an ABDM-enabled PHR application like ArogyaSetu, Ekacare, or Aarogya One on your smartphone.", icon: Smartphone },
   { step: "3", title: "Scan the QR Code", desc: "At the doctor's clinic, scan the QR code displayed at the reception or doctor's desk using your PHR app.", icon: QrCode },
   { step: "4", title: "Select Your Records", desc: "Choose which health records to share — prescriptions, lab reports, or medical documents from your Health Locker.", icon: FileText },
   { step: "5", title: "Set Duration & Share", desc: "Set the sharing duration (up to 6 hours) and confirm. You can update the duration before expiry. Your records are shared securely with the doctor instantly.", icon: CheckCircle },
+  { step: "6", title: "View Transaction History", desc: "You can view the transaction history of all your shared records in your PHR app — see what was shared, with whom, and when.", icon: History },
 ];
 
 const benefits = [
@@ -40,13 +41,20 @@ const benefits = [
   },
 ];
 
+const phrApps = [
+  { name: "ArogyaSetu", desc: "Government of India's official health app with Scan & Record Share support." },
+  { name: "Ekacare", desc: "Popular PHR app with health locker, records management, and Scan & Record Share integration." },
+  { name: "Aarogya One", desc: "ABDM-enabled PHR with easy record sharing features." },
+  { name: "ABHA App", desc: "Official ABHA management app by NHA." },
+];
+
 const faqs = [
   { q: "What is Scan & Record Share?", a: "It allows you to share your health records with a doctor by scanning a QR code at the healthcare facility, directly from your mobile phone. No physical files needed." },
   { q: "Do I need to carry printed reports?", a: "No. You can digitally share your available health records from your phone during the consultation." },
   { q: "What type of records can I share?", a: "Medical reports, prescriptions, lab results, and other health records available on your phone or linked to your ABHA. Supported formats include PDF, JPG, and PNG." },
   { q: "Will the doctor see all my records automatically?", a: "No. Only the records you explicitly select are shared. Nothing is accessed without your action." },
   { q: "Is my data secure?", a: "Yes. Records are encrypted and shared securely through the ABDM gateway. The doctor can only view records for the duration you specify." },
-  { q: "How long can the doctor access my records?", a: "You set the duration yourself, up to a maximum of 6 hours. You can also update this duration before it expires. After expiry, access is automatically revoked." },
+  { q: "How long can the doctor access my records?", a: "You set the duration yourself, up to a maximum of 6 hours. You can also update this duration before it expires. After expiry, records can no longer be accessed by the doctor." },
 ];
 
 const CitizenPage = () => {
@@ -55,7 +63,7 @@ const CitizenPage = () => {
       {/* Hero */}
       <section className="hero-gradient py-12 md:py-16">
         <div className="container text-primary-foreground">
-          <p className="text-sm font-medium opacity-80 mb-2 uppercase tracking-wide">For Citizens & Patients</p>
+          <p className="text-sm font-medium opacity-80 mb-2 uppercase tracking-wide">For Patients</p>
           <h1 className="text-2xl md:text-3xl lg:text-4xl font-heading font-extrabold max-w-3xl leading-tight">
             Your Health Records, Shared Your Way
           </h1>
@@ -126,18 +134,43 @@ const CitizenPage = () => {
         </div>
       </section>
 
-      {/* Your Rights */}
+      {/* PHR Apps Section */}
       <section className="py-12 bg-muted">
+        <div className="container">
+          <SectionHeader title="PHR Apps with Scan & Record Share" subtitle="These apps support Scan & Record Share. Download any one to get started." />
+          <div className="max-w-3xl mx-auto mt-6">
+            <div className="grid sm:grid-cols-2 gap-4">
+              {phrApps.map((app) => (
+                <div key={app.name} className="p-4 rounded-lg bg-card border border-border flex gap-3 items-start">
+                  <Smartphone className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                  <div>
+                    <h4 className="font-heading font-semibold text-sm">{app.name}</h4>
+                    <p className="text-xs text-muted-foreground mt-0.5">{app.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="mt-4 p-3 rounded-lg bg-accent/10 border border-accent/20">
+              <p className="text-xs text-muted-foreground leading-relaxed">
+                <strong>Important:</strong> Your facility and its HMIS must be onboarded to ABDM and be integrated with this "Scan & Record Share" feature for you to access this feature.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Your Rights */}
+      <section className="py-12 bg-card">
         <div className="container">
           <SectionHeader title="Your Data, Your Control" />
           <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-5 mt-6">
             {[
               { icon: Eye, title: "Right to Access", desc: "You can see exactly which records are being shared and with whom." },
               { icon: Shield, title: "Right to Consent", desc: "Nothing is shared without your explicit action." },
-              { icon: Clock, title: "Right to Time-limit", desc: "You set the duration (up to 6 hours). You can update it before expiry. Access is automatically revoked after." },
+              { icon: Clock, title: "Right to Time-limit", desc: "You set the duration (up to 6 hours). You can update it before expiry. Post consent expiry, records can no longer be accessed by the Doctor. Access is automatically revoked." },
               { icon: AlertCircle, title: "Right to Grievance Redressal", desc: "Report issues through the ABDM grievance portal or call 14477.", link: "https://grievance.abdm.gov.in/grievance/v3/" },
             ].map((r) => (
-              <div key={r.title} className="flex gap-3 p-4 rounded-lg bg-card border border-border">
+              <div key={r.title} className="flex gap-3 p-4 rounded-lg bg-muted border border-border">
                 <r.icon className="w-5 h-5 text-secondary shrink-0 mt-0.5" />
                 <div>
                   <h4 className="font-heading font-semibold text-sm mb-0.5">{r.title}</h4>
@@ -155,13 +188,13 @@ const CitizenPage = () => {
       </section>
 
       {/* FAQs */}
-      <section className="py-12 bg-card">
+      <section className="py-12 bg-muted">
         <div className="container">
           <SectionHeader title="Frequently Asked Questions" />
           <div className="max-w-3xl mx-auto mt-6">
             <Accordion type="single" collapsible className="space-y-2">
               {faqs.map((f, i) => (
-                <AccordionItem key={i} value={`faq-${i}`} className="border border-border rounded-lg px-4 bg-muted">
+                <AccordionItem key={i} value={`faq-${i}`} className="border border-border rounded-lg px-4 bg-card">
                   <AccordionTrigger className="text-sm font-semibold text-left hover:no-underline">
                     {f.q}
                   </AccordionTrigger>
@@ -176,7 +209,7 @@ const CitizenPage = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-12 bg-muted border-t border-border">
+      <section className="py-12 bg-card border-t border-border">
         <div className="container text-center">
           <h2 className="text-xl md:text-2xl font-heading font-bold">Ready to Get Started?</h2>
           <p className="text-muted-foreground text-sm mt-2 max-w-md mx-auto">
@@ -184,7 +217,7 @@ const CitizenPage = () => {
           </p>
           <div className="flex flex-wrap justify-center gap-3 mt-5">
             <a href="#" className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2.5 rounded font-semibold text-sm hover:brightness-110 transition-all">
-              <Smartphone className="w-4 h-4" /> Download ABHA App
+              <Smartphone className="w-4 h-4" /> Download ArogyaSetu App
             </a>
             <a href="#" className="inline-flex items-center gap-2 bg-secondary text-secondary-foreground px-5 py-2.5 rounded font-semibold text-sm hover:brightness-110 transition-all">
               <UserCheck className="w-4 h-4" /> Create ABHA

@@ -25,9 +25,9 @@ const Footer = () => {
               <h4 className="font-heading font-semibold text-xs mb-3 uppercase tracking-wider opacity-80">Quick Links</h4>
               <ul className="space-y-1.5 text-xs">
                 <li><Link to="/" className="opacity-70 hover:opacity-100 transition-opacity">Home</Link></li>
-                <li><Link to="/citizens" className="opacity-70 hover:opacity-100 transition-opacity">For Citizens</Link></li>
+                <li><Link to="/citizens" className="opacity-70 hover:opacity-100 transition-opacity">For Patients</Link></li>
                 <li><Link to="/integrators" className="opacity-70 hover:opacity-100 transition-opacity">For Solution Companies</Link></li>
-                <li><Link to="/policy" className="opacity-70 hover:opacity-100 transition-opacity">For States & UTs</Link></li>
+                <li><Link to="/policy" className="opacity-70 hover:opacity-100 transition-opacity">For Facilities or States</Link></li>
                 <li><Link to="/resources" className="opacity-70 hover:opacity-100 transition-opacity">Resources</Link></li>
               </ul>
             </div>
@@ -59,7 +59,7 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Sub-footer — matching ABDM website style */}
+      {/* Sub-footer */}
       <div className="bg-foreground text-background">
         <div className="container py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
@@ -69,7 +69,7 @@ const Footer = () => {
                 <div className="w-20 h-20 bg-background rounded flex items-center justify-center mb-1">
                   <span className="text-foreground text-[9px] font-medium text-center leading-tight px-1">[QR Code Placeholder]</span>
                 </div>
-                <span className="text-[9px] opacity-60">Download ABHA App</span>
+                <span className="text-[9px] opacity-60">Download ArogyaSetu</span>
               </div>
               <div className="text-center">
                 <div className="w-20 h-20 bg-background rounded flex items-center justify-center mb-1">
@@ -81,7 +81,7 @@ const Footer = () => {
 
             {/* App download badges */}
             <div className="flex flex-col items-center gap-2">
-              <p className="text-xs font-medium opacity-80">Download ABHA App</p>
+              <p className="text-xs font-medium opacity-80">Download ArogyaSetu App</p>
               <div className="flex gap-2">
                 <a href="#" className="px-3 py-1.5 border border-background/30 rounded text-[10px] font-medium hover:bg-background/10 transition-colors">
                   Google Play

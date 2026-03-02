@@ -7,9 +7,9 @@ import abdmLogoText from "@/assets/abdm-logo-text.svg";
 
 const navItems = [
   { label: "Home", path: "/" },
-  { label: "For Citizens", path: "/citizens" },
+  { label: "For Patients", path: "/citizens" },
   { label: "For Solution Companies", path: "/integrators" },
-  { label: "For States & UTs", path: "/policy" },
+  { label: "For Facilities or States", path: "/policy" },
   { label: "Resources", path: "/resources" },
   { label: "A Recommendation", path: "/recommendation" },
 ];

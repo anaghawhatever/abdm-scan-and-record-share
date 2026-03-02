@@ -3,7 +3,7 @@ import Layout from "@/components/Layout";
 import SectionHeader from "@/components/SectionHeader";
 import {
   QrCode, Shield, Clock, Users, Heart, Building2, Code2,
-  Landmark, ArrowRight, FileText, Smartphone, Play
+  Landmark, ArrowRight, FileText, Smartphone, Play, Info
 } from "lucide-react";
 import flowQr from "@/assets/flow-qr-facility.jpg";
 import flowScan from "@/assets/flow-patient-scan.jpg";
@@ -22,7 +22,7 @@ const flowSteps = [
   { img: flowQr, caption: "QR Code at Facility", desc: "A QR code containing recipient information is placed at the clinic or hospital counter." },
   { img: flowScan, caption: "Patient Scans QR Code", desc: "Patient uses a PHR app to scan the QR code, receiving recipient details and encryption key." },
   { img: flowSelect, caption: "Select Records from Health Locker", desc: "Patient selects health records — lab reports, prescriptions, X-rays — from their PHR Health Locker." },
-  { img: flowShare, caption: "Confirm & Share", desc: "Patient sets consent duration (up to 6 hours) and taps Share. Records are encrypted and sent securely." },
+  { img: flowShare, caption: "Confirm & Share", desc: "Patient sets consent duration (up to 6 hours, updatable before expiry) and taps Share. Records are encrypted and sent securely." },
   { img: flowDoctor, caption: "Doctor Views Records", desc: "The doctor's HMIS receives the same records instantly, displayed on their screen for the consultation." },
 ];
 
@@ -45,7 +45,7 @@ const Index = () => {
                   to="/citizens"
                   className="inline-flex items-center gap-2 bg-accent text-accent-foreground px-5 py-2.5 rounded font-semibold text-sm hover:brightness-110 transition-all"
                 >
-                  <Heart className="w-4 h-4" /> I'm a Patient
+                  <Heart className="w-4 h-4" /> I'm a Citizen
                 </Link>
                 <Link
                   to="/integrators"
@@ -57,7 +57,7 @@ const Index = () => {
                   to="/policy"
                   className="inline-flex items-center gap-2 bg-primary-foreground/15 text-primary-foreground border border-primary-foreground/30 px-5 py-2.5 rounded font-semibold text-sm hover:bg-primary-foreground/25 transition-all"
                 >
-                  <Landmark className="w-4 h-4" /> I'm a State / UT
+                  <Landmark className="w-4 h-4" /> I'm a Facility / State
                 </Link>
               </div>
             </div>
@@ -87,7 +87,7 @@ const Index = () => {
             {[
               { icon: QrCode, title: "Scan", desc: "Scan the QR code displayed at the healthcare facility using any ABDM-enabled PHR app on your smartphone.", color: "text-primary" },
               { icon: FileText, title: "Select", desc: "Choose which health records to share — prescriptions, lab results, or medical documents from your phone.", color: "text-secondary" },
-              { icon: Shield, title: "Share", desc: "Confirm and share securely. Records are available to the doctor only for the duration you specify (up to 6 hours).", color: "text-accent" },
+              { icon: Shield, title: "Share", desc: "Confirm and share securely. Records are available to the doctor only for the duration you specify (up to 6 hours, updatable before expiry).", color: "text-accent" },
             ].map((item) => (
               <div key={item.title} className="text-center p-6 rounded-lg bg-muted">
                 <item.icon className={`w-8 h-8 ${item.color} mx-auto mb-3`} />
@@ -131,9 +131,9 @@ const Index = () => {
 
             <Link to="/policy" className="group tier-card-policy rounded-lg p-6 hover:shadow-md transition-all">
               <Landmark className="w-6 h-6 text-tier-policy mb-3" />
-              <h3 className="font-heading font-bold text-lg mb-1.5">States & UTs</h3>
+              <h3 className="font-heading font-bold text-lg mb-1.5">Facilities & States</h3>
               <p className="text-muted-foreground text-sm leading-relaxed mb-3">
-                Explore how your state or UT can adopt and implement Scan & Record Share.
+                Explore how your facility or state can adopt and implement Scan & Record Share.
               </p>
               <span className="inline-flex items-center gap-1 text-sm font-semibold text-tier-policy group-hover:gap-2 transition-all">
                 View Details <ArrowRight className="w-4 h-4" />
@@ -143,11 +143,11 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Stats */}
+      {/* Stats — ABDM at a Glance */}
       <section className="py-14 bg-card border-y border-border">
         <div className="container">
-          <SectionHeader title="ABDM at a Glance" />
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
+          <SectionHeader title="ABDM at a Glance" subtitle="These numbers reflect the broader ABDM ecosystem that powers Scan & Record Share." />
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
             {stats.map((s) => (
               <div key={s.label} className="stat-card">
                 <s.icon className="w-6 h-6 text-primary mx-auto mb-2" />
@@ -156,6 +156,9 @@ const Index = () => {
               </div>
             ))}
           </div>
+          <p className="text-center text-xs text-muted-foreground mt-4 flex items-center justify-center gap-1.5">
+            <Info className="w-3.5 h-3.5" /> These are ABDM-wide statistics. Scan & Record Share-specific metrics will be updated here in real-time as adoption grows. This section is optional and can be removed.
+          </p>
         </div>
       </section>
 
@@ -185,7 +188,7 @@ const Index = () => {
               ))}
             </div>
             <p className="text-center text-xs text-muted-foreground mt-6">
-              Data flows securely between components via the ABDM Gateway (HIE-CM). The gateway is data-blind — it cannot read or store any health records.
+              Data flows securely between components via the ABDM Gateway. The gateway is data-blind — it cannot read or store any health records.
             </p>
           </div>
         </div>
