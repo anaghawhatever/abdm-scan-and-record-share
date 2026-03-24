@@ -68,7 +68,7 @@ const PolicyPage = () => {
           <div className="max-w-3xl mx-auto mt-6">
             <div className="space-y-3">
               {[
-                { step: "1", title: "Assess Readiness", desc: "Review existing HMIS/LMIS integration levels across your healthcare facilities." },
+                { step: "1", title: "Assess Readiness", desc: "Review existing HMIS/LMIS integration levels across your healthcare facility." },
                 { step: "2", title: "Engage Solution Providers", desc: "Connect with ABDM-certified Digital Solution Companies for integration support." },
                 { step: "3", title: "Deploy Facility QR Codes", desc: "Generate and place QR codes containing facility and doctor IDs at healthcare touchpoints." },
                 { step: "4", title: "Train Healthcare Workers", desc: "Orient doctors, nurses, and front-desk staff on the Scan & Record Share workflow." },
@@ -84,6 +84,13 @@ const PolicyPage = () => {
                   </div>
                 </div>
               ))}
+            </div>
+            <div className="mt-5 p-4 rounded-lg bg-accent/10 border border-accent/20">
+              <p className="text-sm font-semibold text-foreground mb-1">Interested in adopting Scan & Record Share?</p>
+              <p className="text-xs text-muted-foreground leading-relaxed">
+                If your HMIS provider says this feature is not feasible, please reach out to us directly. We can help assess your setup and connect you with integration-ready solution companies.
+                Contact us at <a href="mailto:integration-support@abdm.gov.in" className="text-primary underline hover:no-underline font-medium">integration-support@abdm.gov.in</a> or call <strong>14477</strong>.
+              </p>
             </div>
           </div>
         </div>

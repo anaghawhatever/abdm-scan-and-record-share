@@ -365,6 +365,9 @@ const IntegratorPage = () => {
               <ExternalLink className="w-4 h-4" /> Developer Portal
             </a>
           </div>
+          <p className="text-xs text-muted-foreground mt-4">
+            Have integration queries? Reach out to us at <a href="mailto:integration-support@abdm.gov.in" className="text-primary underline hover:no-underline font-medium">integration-support@abdm.gov.in</a>
+          </p>
         </div>
       </section>
     </Layout>

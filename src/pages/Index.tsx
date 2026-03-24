@@ -86,7 +86,7 @@ const Index = () => {
           <div className="grid md:grid-cols-3 gap-6 mt-6">
             {[
               { icon: QrCode, title: "Scan", desc: "Scan the QR code displayed at the healthcare facility using any ABDM-enabled PHR app on your smartphone.", color: "text-primary" },
-              { icon: FileText, title: "Select", desc: "Choose which health records to share — prescriptions, lab results, or medical documents from your phone.", color: "text-secondary" },
+              { icon: FileText, title: "Select", desc: "Choose which health records to share — prescriptions, lab results, or medical documents from your phone or locker.", color: "text-secondary" },
               { icon: Shield, title: "Share", desc: "Confirm and share securely. Records are available to the doctor only for the duration you specify (up to 6 hours, updatable before expiry).", color: "text-accent" },
             ].map((item) => (
               <div key={item.title} className="text-center p-6 rounded-lg bg-muted">
