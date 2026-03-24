@@ -119,18 +119,21 @@ const IntegratorPage = () => {
       <section className="py-12 bg-muted">
         <div className="container">
           <SectionHeader title="Scan & Record Share — Integration Flow" />
-          <div className="max-w-4xl mx-auto mt-6">
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+          <div className="max-w-6xl mx-auto mt-6">
+            <div className="grid grid-cols-3 md:grid-cols-6 gap-2">
               {userFlowSteps.map((step, i) => (
-                <div key={i} className="relative p-3 rounded-lg bg-card border border-border">
-                  <div className="flex items-center gap-2 mb-1.5">
+                <div key={i} className="relative p-3 rounded-lg bg-card border border-border text-center">
+                  <div className="flex items-center justify-center gap-1.5 mb-1.5">
                     <div className="w-5 h-5 rounded-full bg-primary flex items-center justify-center">
                       <span className="text-primary-foreground font-bold text-[9px]">{i + 1}</span>
                     </div>
                     <step.icon className="w-3.5 h-3.5 text-tier-integrator" />
                   </div>
-                  <h4 className="font-heading font-semibold text-xs mb-0.5">{step.title}</h4>
+                  <h4 className="font-heading font-semibold text-[11px] mb-0.5">{step.title}</h4>
                   <p className="text-[10px] text-muted-foreground leading-relaxed">{step.desc}</p>
+                  {i < userFlowSteps.length - 1 && (
+                    <ArrowRight className="hidden md:block w-4 h-4 text-primary absolute -right-3 top-1/2 -translate-y-1/2 z-10" />
+                  )}
                 </div>
               ))}
             </div>
@@ -362,6 +365,9 @@ const IntegratorPage = () => {
               <ExternalLink className="w-4 h-4" /> Developer Portal
             </a>
           </div>
+          <p className="text-xs text-muted-foreground mt-4">
+            Have integration queries? Reach out to us at <a href="mailto:integration-support@abdm.gov.in" className="text-primary underline hover:no-underline font-medium">integration-support@abdm.gov.in</a>
+          </p>
         </div>
       </section>
     </Layout>
