@@ -38,7 +38,7 @@ const Index = () => {
                 Scan & Record Share
               </h1>
               <p className="text-base md:text-lg opacity-90 leading-relaxed max-w-lg">
-                Empowering patients to instantly share health records with doctors by simply scanning a QR code — secure, consented, and paperless.
+                Empowering patients to instantly share health records with doctors/health workers/facilities by simply scanning a QR code — secure, consented, and paperless.
               </p>
               <div className="flex flex-wrap gap-3 pt-1">
                 <Link
