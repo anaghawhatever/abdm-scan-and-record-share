@@ -81,7 +81,7 @@ const Index = () => {
         <div className="container">
           <SectionHeader
             title="About Scan & Record Share"
-            subtitle="A simple, patient-controlled way to share health records digitally with a doctor or at a facility."
+            subtitle="A simpler, patient-controlled way to share health records quickly and digitally with a doctor or at a facility via PHR app."
           />
           <div className="grid md:grid-cols-3 gap-6 mt-6">
             {[
