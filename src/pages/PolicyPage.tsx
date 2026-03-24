@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/accordion";
 
 const faqs = [
-  { q: "How do I generate a Scan & Record Share QR code for my facility?", a: "QR codes are generated through the ABDM facility registration portal. Each QR encodes the facility's recipient information and a public encryption key (cert URL). Contact NHA or your HMIS provider for the QR generation tool." },
+  { q: "How do I generate a Scan & Record Share QR code for my facility?", a: "QR codes are generated through the ABDM facility registration portal. Each QR encodes the facility\u2019s recipient information and a public encryption key (cert URL). Contact both, NHA and your HMIS provider for the QR generation tool." },
   { q: "Does my facility need M3 enablement for Scan & Record Share?", a: "No. Scan & Record Share is a patient-initiated flow. Your HMIS needs to implement the Record Share receive/decrypt endpoints. Full M3 enablement is not required for this specific feature." },
   { q: "What compliance level must our HMIS/LMIS have?", a: "Your HMIS/LMIS must be ABDM-registered and integrated with the Record Share API collection. M2-enabled PHR apps on the patient side handle the sharing." },
   { q: "How is patient consent handled?", a: "Consent is implicit — the patient physically scans the QR code and selects which records to share. They also set a duration (up to 6 hours, updatable before expiry). No separate consent artefact is needed." },
