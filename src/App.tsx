@@ -8,7 +8,7 @@ import CitizenPage from "./pages/CitizenPage";
 import IntegratorPage from "./pages/IntegratorPage";
 import PolicyPage from "./pages/PolicyPage";
 import ResourcesPage from "./pages/ResourcesPage";
-import RecommendationPage from "./pages/RecommendationPage";
+
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
