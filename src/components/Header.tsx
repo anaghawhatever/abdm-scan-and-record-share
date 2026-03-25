@@ -11,7 +11,7 @@ const navItems = [
   { label: "For Solution Companies", path: "/integrators" },
   { label: "For Facilities or States", path: "/policy" },
   { label: "Resources", path: "/resources" },
-  { label: "A Recommendation", path: "/recommendation" },
+  
 ];
 
 const Header = () => {

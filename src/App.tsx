@@ -25,7 +25,7 @@ const App = () => (
           <Route path="/integrators" element={<IntegratorPage />} />
           <Route path="/policy" element={<PolicyPage />} />
           <Route path="/resources" element={<ResourcesPage />} />
-          <Route path="/recommendation" element={<RecommendationPage />} />
+          
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
