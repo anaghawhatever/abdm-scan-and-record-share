@@ -156,9 +156,7 @@ const Index = () => {
               </div>
             ))}
           </div>
-          <p className="text-center text-xs text-muted-foreground mt-4 flex items-center justify-center gap-1.5">
-            <Info className="w-3.5 h-3.5" /> These are ABDM-wide statistics. Scan & Record Share-specific metrics will be updated here in real-time as adoption grows. This section is optional and can be removed.
-          </p>
+          
         </div>
       </section>
 
