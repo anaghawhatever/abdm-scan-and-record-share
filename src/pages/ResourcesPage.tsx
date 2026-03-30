@@ -17,14 +17,14 @@ type Resource = {
 const resources: Resource[] = [
   { title: "Scan & Record Share — Feature Introduction Deck", type: "Presentation", audience: "All", date: "2025-10", desc: "Overview of the initiative, user flows, development phases, and integration status." },
   { title: "Scan & Record Share API Documentation", type: "Integration Document", audience: "Integrators", date: "2025-10", desc: "Complete API reference including endpoints, request/response formats, and authentication details." },
-  { title: "Integrator Playbook", type: "", audience: "Integration Document", date: "2025-11", desc: "Comprehensive knowledge base with FAQs, user journeys, and beneficiary mapping." },
+  { title: "Integrator Playbook", type: "Integration Document", audience: "Integrator", date: "2025-11", desc: "Comprehensive knowledge base with FAQs, user journeys, and beneficiary mapping." },
   { title: "Scan & Record Record Share API Collection", type: "Integration Document", audience: "Integrators", date: "2025-10", desc: "Ready-to-use API collection for testing all Record Share endpoints in sandbox." },
   { title: "Facility Playbook", type: "Integration Document", audience: "Policy", date: "2024-06", desc: "[PLACEHOLDER: Placeholder description]" },
   { title: "State Implementation Toolkit", type: "Guidelines", audience: "Policy", date: "2025-12", desc: "[PLACEHOLDER: State-specific rollout guide including facility readiness assessment and QR deployment checklist]" },
   { title: "IEC Material", type: "IEC", audience: "Citizens", date: "2025-12", desc: "[PLACEHOLDER: Visual guide explaining how citizens can use Scan & Record Share at healthcare facilities]" },
   { title: "Test cases", type: "Integration Document", audience: "Integrators", date: "2026-01", desc: "[PLACEHOLDER: Testcases for completing Integration.]" },
-  { title: "Placeholder 2", type: "Guidelines", audience: "Policy", date: "2025-11", desc: "[PLACEHOLDER: Official NHA circular on Scan & Record Share adoption]" },
-  { title: "Placeholder 1", type: "Other", audience: "Integrators", date: "2025-10", desc: "[PLACEHOLDER: Step-by-step guide for Digital Solution Companies to begin integration]" },
+  { title: "Video Demo", type: "IEC", audience: "All", date: "2025-11", desc: "[PLACEHOLDER: Official NHA circular on Scan & Record Share adoption]" },
+  { title: "Placeholder 1", type: "Training Material", audience: "Integrators", date: "2025-10", desc: "[PLACEHOLDER: Step-by-step guide for Digital Solution Companies to begin integration]" },
 ];
 
 const types = ["All", "Guidelines", "IEC", "Integration Document", "Training Material", "Presentation", "Other"];
