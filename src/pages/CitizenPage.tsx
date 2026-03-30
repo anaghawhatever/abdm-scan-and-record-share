@@ -13,6 +13,9 @@ import {
 import benefitLab from "@/assets/benefit-lab-reports.jpg";
 import benefitPharmacy from "@/assets/benefit-pharmacy.jpg";
 import benefitEmergency from "@/assets/benefit-emergency.jpg";
+import benefitnew1 from "@/assets/benefit-lab-reports.jpg";
+import benefitnew2 from "@/assets/benefit-pharmacy.jpg";
+import benefitnew3 from "@/assets/benefit-emergency.jpg";
 
 const steps = [
   { step: "1", title: "Get Your ABHA", desc: "Create your Ayushman Bharat Health Account (ABHA) if you don't have one. It's free and takes only a few minutes.", icon: UserCheck },
@@ -38,6 +41,21 @@ const benefits = [
     img: benefitEmergency,
     title: "Access Records Anywhere in an Emergency",
     desc: "Visiting a new hospital in a different city? Share your complete medical history instantly so doctors can treat you with full context.",
+  },
+   {
+    img: benefitnew1,
+    title: "Placeholder 1",
+    desc: "Placeholder 1",
+  },
+   {
+    img: benefitnew2,
+    title: "Placeholder 2",
+    desc: "Placeholder 2",
+  },
+   {
+    img: benefitnew3,
+    title: "Placeholder 3",
+    desc: "Placeholder 3",
   },
 ];
 
@@ -134,31 +152,6 @@ const CitizenPage = () => {
         </div>
       </section>
 
-      {/* PHR Apps Section */}
-      <section className="py-12 bg-muted">
-        <div className="container">
-          <SectionHeader title="PHR Apps with Scan & Record Share" subtitle="These apps support Scan & Record Share. Download any one to get started." />
-          <div className="max-w-3xl mx-auto mt-6">
-            <div className="grid sm:grid-cols-2 gap-4">
-              {phrApps.map((app) => (
-                <div key={app.name} className="p-4 rounded-lg bg-card border border-border flex gap-3 items-start">
-                  <Smartphone className="w-5 h-5 text-primary shrink-0 mt-0.5" />
-                  <div>
-                    <h4 className="font-heading font-semibold text-sm">{app.name}</h4>
-                    <p className="text-xs text-muted-foreground mt-0.5">{app.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="mt-4 p-3 rounded-lg bg-accent/10 border border-accent/20">
-              <p className="text-xs text-muted-foreground leading-relaxed">
-                <strong>Important:</strong> Your facility and its HMIS must be onboarded to ABDM and be integrated with this "Scan & Record Share" feature for you to access this feature.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Your Rights */}
       <section className="py-12 bg-card">
         <div className="container">
@@ -216,11 +209,12 @@ const CitizenPage = () => {
             Download an ABDM-enabled PHR app, create your ABHA, and start sharing records digitally.
           </p>
           <div className="flex flex-wrap justify-center gap-3 mt-5">
-            <a href="#" className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2.5 rounded font-semibold text-sm hover:brightness-110 transition-all">
-              <Smartphone className="w-4 h-4" /> Download ArogyaSetu App
-            </a>
+          
             <a href="#" className="inline-flex items-center gap-2 bg-secondary text-secondary-foreground px-5 py-2.5 rounded font-semibold text-sm hover:brightness-110 transition-all">
               <UserCheck className="w-4 h-4" /> Create ABHA
+            </a>
+            <a href="#" className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2.5 rounded font-semibold text-sm hover:brightness-110 transition-all">
+              <Smartphone className="w-4 h-4" /> Placeholder(Download Aarogya Setu App)
             </a>
           </div>
           <p className="text-xs text-muted-foreground mt-4">

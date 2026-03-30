@@ -16,18 +16,18 @@ type Resource = {
 
 const resources: Resource[] = [
   { title: "Scan & Record Share — Feature Introduction Deck", type: "Presentation", audience: "All", date: "2025-10", desc: "Overview of the initiative, user flows, development phases, and integration status." },
-  { title: "Patient Record Share API Documentation", type: "Technical Specs", audience: "Integrators", date: "2025-10", desc: "Complete API reference including endpoints, request/response formats, and authentication details." },
-  { title: "Scan & Record Share Knowledge Product", type: "Guidelines", audience: "All", date: "2025-11", desc: "Comprehensive knowledge base with FAQs, user journeys, and beneficiary mapping." },
-  { title: "Record Share API Collection", type: "Technical Specs", audience: "Integrators", date: "2025-10", desc: "Ready-to-use API collection for testing all Record Share endpoints in sandbox." },
-  { title: "ABDM Health Data Management Policy", type: "Circulars & Guidelines", audience: "Policy", date: "2024-06", desc: "National policy framework governing health data privacy, consent, and interoperability standards." },
+  { title: "Scan & Record Share API Documentation", type: "Integration Document", audience: "Integrators", date: "2025-10", desc: "Complete API reference including endpoints, request/response formats, and authentication details." },
+  { title: "Integrator Playbook", type: "", audience: "Integration Document", date: "2025-11", desc: "Comprehensive knowledge base with FAQs, user journeys, and beneficiary mapping." },
+  { title: "Scan & Record Record Share API Collection", type: "Integration Document", audience: "Integrators", date: "2025-10", desc: "Ready-to-use API collection for testing all Record Share endpoints in sandbox." },
+  { title: "Facility Playbook", type: "Integration Document", audience: "Policy", date: "2024-06", desc: "[PLACEHOLDER: Placeholder description]" },
   { title: "State Implementation Toolkit", type: "Guidelines", audience: "Policy", date: "2025-12", desc: "[PLACEHOLDER: State-specific rollout guide including facility readiness assessment and QR deployment checklist]" },
-  { title: "Citizen Awareness Brochure", type: "Training Materials", audience: "Citizens", date: "2025-12", desc: "[PLACEHOLDER: Visual guide explaining how citizens can use Scan & Record Share at healthcare facilities]" },
-  { title: "HMIS Integration Case Study — CDAC", type: "Case Studies", audience: "Integrators", date: "2026-01", desc: "[PLACEHOLDER: Case study of CDAC's HMIS integration with timeline, challenges, and outcomes]" },
-  { title: "NHA Circular — Scan & Record Share", type: "Circulars & Guidelines", audience: "Policy", date: "2025-11", desc: "[PLACEHOLDER: Official NHA circular on Scan & Record Share adoption]" },
-  { title: "Developer Onboarding Guide", type: "Technical Specs", audience: "Integrators", date: "2025-10", desc: "[PLACEHOLDER: Step-by-step guide for Digital Solution Companies to begin integration]" },
+  { title: "IEC Material", type: "IEC", audience: "Citizens", date: "2025-12", desc: "[PLACEHOLDER: Visual guide explaining how citizens can use Scan & Record Share at healthcare facilities]" },
+  { title: "Test cases", type: "Integration Document", audience: "Integrators", date: "2026-01", desc: "[PLACEHOLDER: Testcases for completing Integration.]" },
+  { title: "Placeholder 2", type: "Guidelines", audience: "Policy", date: "2025-11", desc: "[PLACEHOLDER: Official NHA circular on Scan & Record Share adoption]" },
+  { title: "Placeholder 1", type: "Other", audience: "Integrators", date: "2025-10", desc: "[PLACEHOLDER: Step-by-step guide for Digital Solution Companies to begin integration]" },
 ];
 
-const types = ["All", "Circulars & Guidelines", "Technical Specs", "Training Materials", "Case Studies", "Presentation", "Guidelines"];
+const types = ["All", "Guidelines", "IEC", "Integration Document", "Training Material", "Presentation", "Other"];
 const audiences = ["All", "Citizens", "Integrators", "Policy"];
 
 const audienceIcon = (a: string) => {
@@ -59,7 +59,7 @@ const ResourcesPage = () => {
             Resources & Documentation
           </h1>
           <p className="text-base opacity-90 mt-3 max-w-2xl leading-relaxed">
-            Access circulars, technical specifications, training materials, and more.
+            Access IEC, guidelines, integration document, training material, and more.
           </p>
         </div>
       </section>
@@ -117,9 +117,6 @@ const ResourcesPage = () => {
                       <Calendar className="w-3 h-3" />{r.date}
                     </span>
                   </div>
-                  <button className="shrink-0 p-2 rounded bg-primary/10 text-primary hover:bg-primary/20 transition-colors">
-                    <Download className="w-4 h-4" />
-                  </button>
                 </div>
               </div>
             ))}

@@ -72,7 +72,7 @@ const PolicyPage = () => {
                 { step: "2", title: "Engage Solution Providers", desc: "Connect with ABDM-certified Digital Solution Companies for integration support." },
                 { step: "3", title: "Deploy Facility QR Codes", desc: "Generate and place QR codes containing facility and doctor IDs at healthcare touchpoints." },
                 { step: "4", title: "Train Healthcare Workers", desc: "Orient doctors, nurses, and front-desk staff on the Scan & Record Share workflow." },
-                { step: "5", title: "Launch & Monitor", desc: "Go live with pilot facilities, track adoption metrics, and scale progressively." },
+                { step: "5", title: "Launch, Socialize & Monitor", desc: "Go live with pilot facilities, create awareness through IEC materials, track adoption metrics, and scale progressively." },
               ].map((s) => (
                 <div key={s.step} className="flex gap-3 items-start p-4 rounded-lg bg-card border border-border">
                   <div className="w-8 h-8 shrink-0 rounded-full bg-tier-policy flex items-center justify-center">
@@ -89,7 +89,7 @@ const PolicyPage = () => {
               <p className="text-sm font-semibold text-foreground mb-1">Interested in adopting Scan & Record Share?</p>
               <p className="text-xs text-muted-foreground leading-relaxed">
                 If your HMIS provider says this feature is not feasible, please reach out to us directly. We can help assess your setup and connect you with integration-ready solution companies.
-                Contact us at <a href="mailto:integration-support@abdm.gov.in" className="text-primary underline hover:no-underline font-medium">integration-support@abdm.gov.in</a> or call <strong>14477</strong>.
+                Contact us at <a href="mailto:integration.support@abdm.gov.in" className="text-primary underline hover:no-underline font-medium">integration.support@abdm.gov.in</a> or call <strong>14477</strong>.
               </p>
             </div>
           </div>
@@ -122,15 +122,13 @@ const PolicyPage = () => {
         <div className="container text-center">
           <h2 className="text-xl md:text-2xl font-heading font-bold">Bring Scan & Record Share to Your Facility or State</h2>
           <p className="text-muted-foreground text-sm mt-2 max-w-md mx-auto">
-            Contact NHA to discuss implementation support, timelines, and facility or state-specific plans.
+            Contact us at integration.support@abdm.gov.in to discuss implementation support, timelines, and facility or state-specific plans.
           </p>
           <div className="flex flex-wrap justify-center gap-3 mt-5">
             <a href="#" className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2.5 rounded font-semibold text-sm hover:brightness-110 transition-all">
               <Download className="w-4 h-4" /> Download Implementation Toolkit
             </a>
-            <a href="#" className="inline-flex items-center gap-2 bg-secondary text-secondary-foreground px-5 py-2.5 rounded font-semibold text-sm hover:brightness-110 transition-all">
-              <Phone className="w-4 h-4" /> Contact NHA
-            </a>
+           
           </div>
         </div>
       </section>

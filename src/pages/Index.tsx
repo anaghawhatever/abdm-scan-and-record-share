@@ -12,10 +12,10 @@ import flowShare from "@/assets/flow-share-confirm.jpg";
 import flowDoctor from "@/assets/flow-doctor-view.jpg";
 
 const stats = [
-  { label: "ABHA Numbers Created", value: "[XX] Cr+", icon: Users },
-  { label: "Health Records Linked", value: "[XX] Cr+", icon: FileText },
-  { label: "Verified Facilities", value: "[XX] L+", icon: Building2 },
-  { label: "Integrators Onboarded", value: "[X,XXX]+", icon: Code2 },
+  { label: "Total Health Records Linked", value: "[XX] Cr+", icon: Users },
+  { label: "Health Records Shared (using this feature)", value: "[XX] Cr+", icon: FileText },
+  { label: "Health Records Linked (using this feature)", value: "[X,XXX]+", icon: Code2 },
+  { label: "Integrators Onboarded", value: "[XX] L+", icon: Building2 },
 ];
 
 const flowSteps = [
@@ -155,6 +155,10 @@ const Index = () => {
                 <div className="text-xs text-muted-foreground mt-1">{s.label}</div>
               </div>
             ))}
+            <p className="text-xs text-muted-foreground flex items-center gap-1.5">
+  <Info className="w-3.5 h-3.5" />
+  Updated as on {new Date().toLocaleString("en-IN", { dateStyle: "long", timeStyle: "short" })}
+</p>
           </div>
           
         </div>
@@ -164,7 +168,7 @@ const Index = () => {
       <section className="py-14 md:py-16 bg-muted">
         <div className="container">
           <SectionHeader
-            title="How It Works — Patient Journey"
+            title="How It Works - Patient Journey"
             subtitle="Scan & Record Share enables patients to digitally share health records with their doctor in five simple steps."
           />
           <div className="max-w-5xl mx-auto mt-8">
@@ -179,14 +183,11 @@ const Index = () => {
                   </div>
                   <h4 className="font-heading font-semibold text-xs mb-1">{step.caption}</h4>
                   <p className="text-[11px] text-muted-foreground leading-relaxed">{step.desc}</p>
-                  {i < flowSteps.length - 1 && (
-                    <ArrowRight className="hidden md:block w-5 h-5 text-primary absolute -right-4 top-[40%]" />
-                  )}
                 </div>
               ))}
             </div>
             <p className="text-center text-xs text-muted-foreground mt-6">
-              Data flows securely between components via the ABDM Gateway. The gateway is data-blind — it cannot read or store any health records.
+              Data flows securely between components via the ABDM Gateway. The gateway is data-blind, it cannot read or store any health records.
             </p>
           </div>
         </div>

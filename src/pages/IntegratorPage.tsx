@@ -63,10 +63,10 @@ const IntegratorPage = () => {
           </p>
           <div className="flex flex-wrap gap-3 mt-5">
             <a href="#" className="inline-flex items-center gap-2 bg-accent text-accent-foreground px-5 py-2.5 rounded font-semibold text-sm hover:brightness-110 transition-all">
-              <Terminal className="w-4 h-4" /> Access Sandbox
+              <Terminal className="w-4 h-4" /> Register for Sandbox
             </a>
             <a href="#" className="inline-flex items-center gap-2 bg-primary-foreground/15 text-primary-foreground border border-primary-foreground/30 px-5 py-2.5 rounded font-semibold text-sm hover:bg-primary-foreground/25 transition-all">
-              <BookOpen className="w-4 h-4" /> API Documentation
+              <BookOpen className="w-4 h-4" /> Sandbox Documentation
             </a>
           </div>
         </div>
@@ -118,7 +118,7 @@ const IntegratorPage = () => {
       {/* Integration Flow — Tighter */}
       <section className="py-12 bg-muted">
         <div className="container">
-          <SectionHeader title="Scan & Record Share — Integration Flow" />
+          <SectionHeader title="Scan & Record Share - Integration Flow" />
           <div className="max-w-6xl mx-auto mt-6">
             <div className="grid grid-cols-3 md:grid-cols-6 gap-2">
               {userFlowSteps.map((step, i) => (
@@ -131,9 +131,7 @@ const IntegratorPage = () => {
                   </div>
                   <h4 className="font-heading font-semibold text-[11px] mb-0.5">{step.title}</h4>
                   <p className="text-[10px] text-muted-foreground leading-relaxed">{step.desc}</p>
-                  {i < userFlowSteps.length - 1 && (
-                    <ArrowRight className="hidden md:block w-4 h-4 text-primary absolute -right-3 top-1/2 -translate-y-1/2 z-10" />
-                  )}
+          
                 </div>
               ))}
             </div>
@@ -362,11 +360,11 @@ const IntegratorPage = () => {
               <Terminal className="w-4 h-4" /> Register for Sandbox
             </a>
             <a href="#" className="inline-flex items-center gap-2 bg-secondary text-secondary-foreground px-5 py-2.5 rounded font-semibold text-sm hover:brightness-110 transition-all">
-              <ExternalLink className="w-4 h-4" /> Developer Portal
+              <ExternalLink className="w-4 h-4" /> Sandbox Documentation
             </a>
           </div>
           <p className="text-xs text-muted-foreground mt-4">
-            Have integration queries? Reach out to us at <a href="mailto:integration-support@abdm.gov.in" className="text-primary underline hover:no-underline font-medium">integration-support@abdm.gov.in</a>
+            Have integration queries? Reach out to us at <a href="mailto:integration.support@abdm.gov.in" className="text-primary underline hover:no-underline font-medium">integration.support@abdm.gov.in</a>
           </p>
         </div>
       </section>
